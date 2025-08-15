@@ -11,3 +11,4 @@ fastapi
 apispec
 apispec_webframeworks
 flask-swagger-ui
+PyJWT>=2.0
