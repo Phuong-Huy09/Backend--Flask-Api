@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from .todo import Todo
+from ..todo import Todo
 from typing import List, Optional
 
 class ITodoRepository(ABC):

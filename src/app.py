@@ -1,6 +1,6 @@
 from flask import Flask, jsonify
 from api.swagger import spec
-from api.controllers.todo_controller import bp as todo_bp
+# from api.controllers.todo_controller import bp as todo_bp  # Temporarily disabled
 from api.controllers.auth_controller import auth_bp
 from api.middleware import middleware
 from api.responses import success_response
@@ -15,7 +15,7 @@ def create_app():
     app = Flask(__name__)
     Swagger(app)
     # Đăng ký blueprint trước
-    app.register_blueprint(todo_bp)
+    # app.register_blueprint(todo_bp)  # Temporarily disabled
     app.register_blueprint(auth_bp)
 
      # Thêm Swagger UI blueprint
