@@ -1,0 +1,8 @@
+Flask==2.3.2
+Flask-SQLAlchemy==3.0.5
+Flask-Migrate==4.0.4
+Flask-Cors==3.0.10
+marshmallow==3.19.0
+marshmallow-sqlalchemy==0.29.0
+python-dotenv==1.0.0
+Werkzeug==2.3.7
