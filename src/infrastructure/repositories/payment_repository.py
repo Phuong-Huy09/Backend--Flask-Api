@@ -22,11 +22,11 @@ class PaymentRepository(BaseRepository[PaymentModel], IPaymentRepository):
         return Payment(
             id=model.id,
             booking_id=model.booking_id,
-            method=PaymentMethod(model.method.value),
+            method=PaymentMethod(model.method),
             provider_txn_id=model.provider_txn_id,
             amount=Decimal(str(model.amount)),
             currency=model.currency,
-            status=PaymentStatus(model.status.value),
+            status=PaymentStatus(model.status),
             created_at=model.created_at,
             updated_at=model.updated_at
         )

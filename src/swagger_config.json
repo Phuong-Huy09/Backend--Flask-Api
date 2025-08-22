@@ -2,8 +2,8 @@
     "template": {
         "swagger": "2.0",
         "info": {
-            "title": "Todo API",
-            "description": "API for managing todos",
+            "title": "To do",
+            "description": "To do",
             "version": "1.0.0"
         },
         "basePath": "/",
@@ -16,7 +16,191 @@
         ],
         "produces": [
             "application/json"
-        ]
+        ],
+        "components": {
+            "schemas": {
+                "PaymentRequest": {
+                    "type": "object",
+                    "required": ["booking_id", "amount", "method"],
+                    "properties": {
+                        "booking_id": {
+                            "type": "integer",
+                            "description": "ID of the booking"
+                        },
+                        "amount": {
+                            "type": "number",
+                            "format": "decimal",
+                            "description": "Payment amount"
+                        },
+                        "method": {
+                            "type": "string",
+                            "enum": ["Card", "Wallet", "Bank"],
+                            "description": "Payment method"
+                        },
+                        "provider_txn_id": {
+                            "type": "string",
+                            "description": "Provider transaction ID"
+                        },
+                        "currency": {
+                            "type": "string",
+                            "default": "USD",
+                            "description": "Currency code"
+                        }
+                    }
+                },
+                "PaymentResponse": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "integer"
+                        },
+                        "booking_id": {
+                            "type": "integer"
+                        },
+                        "method": {
+                            "type": "string"
+                        },
+                        "provider_txn_id": {
+                            "type": "string"
+                        },
+                        "amount": {
+                            "type": "number",
+                            "format": "decimal"
+                        },
+                        "currency": {
+                            "type": "string"
+                        },
+                        "status": {
+                            "type": "string",
+                            "enum": ["Authorized", "Captured", "Failed", "Refunded"]
+                        },
+                        "created_at": {
+                            "type": "string",
+                            "format": "date-time"
+                        },
+                        "updated_at": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    }
+                },
+                "PaymentAction": {
+                    "type": "object",
+                    "required": ["action"],
+                    "properties": {
+                        "action": {
+                            "type": "string",
+                            "enum": ["capture", "refund", "fail"],
+                            "description": "Action to perform on payment"
+                        }
+                    }
+                },
+                "PaymentUpdate": {
+                    "type": "object",
+                    "required": ["status"],
+                    "properties": {
+                        "status": {
+                            "type": "string",
+                            "enum": ["Authorized", "Captured", "Failed", "Refunded"],
+                            "description": "New payment status"
+                        }
+                    }
+                },
+                "PayoutRequest": {
+                    "type": "object",
+                    "required": ["tutor_id", "booking_id", "amount"],
+                    "properties": {
+                        "tutor_id": {
+                            "type": "integer",
+                            "description": "ID of the tutor"
+                        },
+                        "booking_id": {
+                            "type": "integer",
+                            "description": "ID of the booking"
+                        },
+                        "amount": {
+                            "type": "number",
+                            "format": "decimal",
+                            "description": "Payout amount"
+                        }
+                    }
+                },
+                "PayoutResponse": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "integer"
+                        },
+                        "tutor_id": {
+                            "type": "integer"
+                        },
+                        "booking_id": {
+                            "type": "integer"
+                        },
+                        "amount": {
+                            "type": "number",
+                            "format": "decimal"
+                        },
+                        "status": {
+                            "type": "string",
+                            "enum": ["Pending", "Processing", "Paid", "Failed"]
+                        },
+                        "created_at": {
+                            "type": "string",
+                            "format": "date-time"
+                        },
+                        "updated_at": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    }
+                },
+                "PayoutAction": {
+                    "type": "object",
+                    "required": ["action"],
+                    "properties": {
+                        "action": {
+                            "type": "string",
+                            "enum": ["process", "complete", "fail"],
+                            "description": "Action to perform on payout"
+                        }
+                    }
+                },
+                "PayoutUpdate": {
+                    "type": "object",
+                    "required": ["status"],
+                    "properties": {
+                        "status": {
+                            "type": "string",
+                            "enum": ["Pending", "Processing", "Paid", "Failed"],
+                            "description": "New payout status"
+                        }
+                    }
+                },
+                "TutorEarningsResponse": {
+                    "type": "object",
+                    "properties": {
+                        "tutor_id": {
+                            "type": "integer"
+                        },
+                        "total_earnings": {
+                            "type": "number",
+                            "format": "decimal"
+                        },
+                        "pending_earnings": {
+                            "type": "number",
+                            "format": "decimal"
+                        },
+                        "completed_payouts_count": {
+                            "type": "integer"
+                        },
+                        "pending_payouts_count": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            }
+        }
     },
     "swagger_config": {
         "headers": [],

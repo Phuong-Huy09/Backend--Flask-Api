@@ -1,7 +1,17 @@
 from flask import Flask, jsonify
 from api.swagger import spec
 from api.controllers.auth_controller import auth_bp
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+from api.controllers.payments_controller import bp as payments_bp
+from api.controllers.payouts_controller import bp as payouts_bp
+=======
+from api.controllers.subjects_controller import subjects_bp
+from api.controllers.bookings_controller import bookings_bp
+>>>>>>> 4baa96f (up bookings_controller,subjects_controller,booking_service,subject_service)
+>>>>>>> e5fa3555a86db82a6325806b64827a8a46d85e1e
 from api.middleware import middleware
 from api.responses import success_response
 from infrastructure.databases import init_db
@@ -10,10 +20,23 @@ from flasgger import Swagger
 from config import SwaggerConfig
 from flask_swagger_ui import get_swaggerui_blueprint
 
-
 def create_app():
     app = Flask(__name__)
     Swagger(app)
+<<<<<<< HEAD
+=======
+    # Đăng ký blueprint trước
+    # app.register_blueprint(todo_bp)  # Temporarily disabled
+    app.register_blueprint(auth_bp)
+<<<<<<< HEAD
+    app.register_blueprint(payments_bp)
+    app.register_blueprint(payouts_bp)
+=======
+    app.register_blueprint(subjects_bp)
+    app.register_blueprint(bookings_bp)
+
+>>>>>>> 4baa96f (up bookings_controller,subjects_controller,booking_service,subject_service)
+>>>>>>> e5fa3555a86db82a6325806b64827a8a46d85e1e
 
     # Đăng ký blueprint
     app.register_blueprint(auth_bp)
@@ -39,7 +62,12 @@ def create_app():
     # Register routes vào spec
     with app.test_request_context():
         for rule in app.url_map.iter_rules():
+<<<<<<< HEAD
             if rule.endpoint.startswith(('todo.', 'course.', 'user.', 'students.', 'tutors.')):
+=======
+            # Thêm các endpoint khác nếu cần
+            if rule.endpoint.startswith(('todo.', 'course.', 'user.', 'payments.', 'payouts.')):
+>>>>>>> e5fa3555a86db82a6325806b64827a8a46d85e1e
                 view_func = app.view_functions[rule.endpoint]
                 print(f"Adding path: {rule.rule} -> {view_func}")
                 spec.path(view=view_func)
