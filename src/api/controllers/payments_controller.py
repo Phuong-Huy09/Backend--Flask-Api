@@ -37,14 +37,14 @@ def create_payment():
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PaymentRequest'
+              $ref: '#/components/schemas/PaymentRequestSchema'
       responses:
         201:
           description: Payment created successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PaymentResponse'
+                $ref: '#/components/schemas/PaymentResponseSchema'
         400:
           description: Invalid request data
         500:
@@ -93,7 +93,7 @@ def get_payment(payment_id):
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PaymentResponse'
+                $ref: '#/components/schemas/PaymentResponseSchema'
         404:
           description: Payment not found
         500:
@@ -132,7 +132,7 @@ def get_payment_by_booking(booking_id):
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PaymentResponse'
+                $ref: '#/components/schemas/PaymentResponseSchema'
         404:
           description: Payment not found
         500:
@@ -168,7 +168,7 @@ def payment_action(payment_id):
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PaymentAction'
+              $ref: '#/components/schemas/PaymentActionSchema'
       tags:
         - Payments
       responses:
@@ -177,7 +177,7 @@ def payment_action(payment_id):
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PaymentResponse'
+                $ref: '#/components/schemas/PaymentResponseSchema'
         400:
           description: Invalid action or payment state
         404:
@@ -228,7 +228,7 @@ def update_payment_status(payment_id):
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PaymentUpdate'
+              $ref: '#/components/schemas/PaymentUpdateSchema'
       tags:
         - Payments
       responses:
@@ -237,7 +237,7 @@ def update_payment_status(payment_id):
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PaymentResponse'
+                $ref: '#/components/schemas/PaymentResponseSchema'
         400:
           description: Invalid status
         404:
@@ -287,7 +287,7 @@ def list_payments_by_status(status):
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/PaymentResponse'
+                  $ref: '#/components/schemas/PaymentResponseSchema'
         400:
           description: Invalid status
         500:
