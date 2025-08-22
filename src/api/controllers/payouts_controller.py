@@ -39,14 +39,14 @@ def create_payout():
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PayoutRequest'
+              $ref: '#/components/schemas/PayoutRequestSchema'
       responses:
         201:
           description: Payout created successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PayoutResponse'
+                $ref: '#/components/schemas/PayoutResponseSchema'
         400:
           description: Invalid request data
         500:
@@ -90,7 +90,7 @@ def get_payout(payout_id):
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PayoutResponse'
+                $ref: '#/components/schemas/PayoutResponseSchema'
         404:
           description: Payout not found
         500:
@@ -131,7 +131,7 @@ def get_tutor_payouts(tutor_id):
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/PayoutResponse'
+                  $ref: '#/components/schemas/PayoutResponseSchema'
         500:
           description: Internal server error
     """
@@ -166,7 +166,7 @@ def get_booking_payouts(booking_id):
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/PayoutResponse'
+                  $ref: '#/components/schemas/PayoutResponseSchema'
         500:
           description: Internal server error
     """
@@ -196,7 +196,7 @@ def payout_action(payout_id):
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PayoutAction'
+              $ref: '#/components/schemas/PayoutActionSchema'
       tags:
         - Payouts
       responses:
@@ -205,7 +205,7 @@ def payout_action(payout_id):
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PayoutResponse'
+                $ref: '#/components/schemas/PayoutResponseSchema'
         400:
           description: Invalid action or payout state
         404:
@@ -216,7 +216,7 @@ def payout_action(payout_id):
     try:
         # Validate request data
         data = action_schema.load(request.json)
-        action = data['action']
+        action = data['actionSchema']
         
         payout = None
         
@@ -256,7 +256,7 @@ def update_payout_status(payout_id):
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PayoutUpdate'
+              $ref: '#/components/schemas/PayoutUpdateSchema'
       tags:
         - Payouts
       responses:
@@ -265,7 +265,7 @@ def update_payout_status(payout_id):
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PayoutResponse'
+                $ref: '#/components/schemas/PayoutResponseSchema'
         400:
           description: Invalid status
         404:
@@ -315,7 +315,7 @@ def list_payouts_by_status(status):
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/PayoutResponse'
+                  $ref: '#/components/schemas/PayoutResponseSchema'
         400:
           description: Invalid status
         500:
@@ -351,7 +351,7 @@ def get_pending_payouts():
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/PayoutResponse'
+                  $ref: '#/components/schemas/PayoutResponseSchema'
         500:
           description: Internal server error
     """
@@ -384,7 +384,7 @@ def get_tutor_earnings(tutor_id):
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TutorEarningsResponse'
+                $ref: '#/components/schemas/TutorEarningsResponseSchema'
         500:
           description: Internal server error
     """
