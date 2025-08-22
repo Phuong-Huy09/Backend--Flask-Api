@@ -46,3 +46,8 @@ class ISubjectRepository(ABC):
     def search_by_name(self, name: str) -> List[Subject]:
         """Search subjects by name pattern"""
         pass
+
+    # @abstractmethod
+    # def check_contract(self, name: str) -> bool:
+    #     """Check if subject exists by name"""
+    #     pass
